@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .upload{
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    border: 1px solid #40a9ff;
+    text-decoration: none;
+    color: #fff;
+    width: 66px;
+
+    border-radius: 4px;
+    background-color: #40a9ff;
+   
+}
+.change{
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+</style>
+</head>
+
+<body>
+    <div class="content clearFlex">
+        <form action="" enctype="multipart/form-data">
+            <div class="upImg clearFlex">
+               
+                <div class="upWrap">
+                    <div class="fileWrap">
+                       
+                        <p  class="upload">选择文件
+                            <input type="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" onchange="upImg(this)" class="change" />
+                        </p>
+                    </div>
+                 </div>
+                <div class="imgOnloadWrap"></div>
+               
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.js"></script>
+<script>
+    let resultImgSrc = ''
+    var dataArr = [
+            { text: "第一个", goodsid: 1 },
+            { text: "第二个", goodsid: 2 },
+            { text: "第三个", goodsid: 3 },
+        ]
+        $(dataArr).each(function (i) {
+            var str = "<li><a href='javascript:;'>" + this.text + "</a></li>";
+            var a = $(str);
+            a.appendTo($('.ul'))
+        })
+   
+    function upImg(obj) {
+        var imgFile = obj.files[0];
+        if (imgFile > 4 * 1024 * 1024) {
+            alert('文件超过4M了')
+        } else {
+            console.log(imgFile);
+            var img = new Image();
+            var fr = new FileReader();
+
+            fr.readAsDataURL(imgFile);
+            fr.onload = function () {
+                var htmlStr = '<div class="upWrap">';
+            
+                htmlStr += '<div class="imgWrap upedImg"><span class="deleteImg">删除</span>';
+                htmlStr += '<img src="' + fr.result + '" alt="" />';
+                htmlStr += '</div>';
+                htmlStr += '<ul class="ul">'
+                htmlStr += '</ul>'
+                htmlStr += '</div>';
+                $('.imgOnloadWrap').append(htmlStr);
+                obj.value = '';
+                resultImgSrc = encodeURI(fr.result.split(',')[1])
+               
+               
+                
+            }
+           
+        }
+    }
+
+    
+    $(document).on('click', '.upedImg .deleteImg', function () {
+        //处理未来事件
+        $(this).parent().parent().remove();
+    })
+   
+
+
+  
+
+   
+</script>
+
+</html>
