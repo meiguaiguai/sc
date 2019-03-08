@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .nut-noticebar {
+            display: flex;
+            height: 40px;
+            padding: 0 10px;
+            font-size: 14px;
+            line-height: 24px;
+            position: relative;
+            -webkit-box-align: center;
+            align-items: center;
+            color: #848484;
+        }
+
+        .wrap {
+            -webkit-box-flex: 1;
+
+            flex: 1;
+            height: 24px;
+            overflow: hidden;
+            position: relative;
+            color: #d37d42;
+            background: rgb(254, 250, 216);
+        }
+
+        .play-infinite {
+            animation: van-notice-bar-play-infinite linear infinite both;
+            position: absolute;
+            white-space: nowrap;
+            padding-left: 282px;
+            animation-delay: 0s;
+            animation-duration: 17.4256s;
+        }
+
+        @keyframes van-notice-bar-play-infinite {
+            to {
+                -webkit-transform: translate3d(-100%, 0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nut-noticebar">
+
+
+        <div class="wrap">
+            <div class="content play-infinite">
+                此 Demo在 PC 端浏览器与移动端浏览器体验差异较大，建议在 Android 或 iOS 设备上体验。</div>
+
+        </div>
+    </div>
+</body>
+
+</html>
